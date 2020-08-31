@@ -2,11 +2,13 @@
 using System.Linq;
 using HotChocolate.Types;
 
-namespace HotChocolate.Pagination
+namespace HotChocolate.Pagination.Types
 {
     public class PaginationType<T> : ObjectType<Abstract.IConnection> where T : class, IOutputType
     {
-        public PaginationType() : base(descriptor => Configure(descriptor)) { }
+        public PaginationType() : base(descriptor => Configure(descriptor))
+        {
+        }
 
         public PaginationType(
             Action<IObjectTypeDescriptor<Abstract.IConnection>> configure) : base(descriptor =>

@@ -20,12 +20,10 @@ namespace HotChocolate.Pagination.Tests
                 Limit = 2,
             };
 
-            var connectionFactory = new QueryableConnectionResolver<string>(
-                list.AsQueryable(), pagingDetails);
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
 
             // act
-            Connection<string> connection = await connectionFactory.ResolveAsync(
-                CancellationToken.None);
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
 
             // assert
             Assert.True(
@@ -39,19 +37,14 @@ namespace HotChocolate.Pagination.Tests
             // arrange
             var list = new List<string> { "a", "b", "c", "d", };
 
-            var pagingDetails = new PaginationDetails
-            {
-            };
+            var pagingDetails = new PaginationDetails();
 
-            var connectionFactory = new QueryableConnectionResolver<string>(
-                list.AsQueryable(), pagingDetails);
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
 
             // act
-            Connection<string> connection = await connectionFactory.ResolveAsync(
-                CancellationToken.None);
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
 
             // assert
-
             Assert.True(
                 connection.PageInfo.TotalCount == 4,
                 "TotalCount");
@@ -68,12 +61,10 @@ namespace HotChocolate.Pagination.Tests
                 PageNumber = 123
             };
 
-            var connectionFactory = new QueryableConnectionResolver<string>(
-                list.AsQueryable(), pagingDetails);
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
 
             // act
-            Connection<string> connection = await connectionFactory.ResolveAsync(
-                CancellationToken.None);
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
 
             // assert
             Assert.True(
@@ -89,16 +80,14 @@ namespace HotChocolate.Pagination.Tests
 
             var pagingDetails = new PaginationDetails
             {
-                PageNumber = 1,
+                PageNumber = 2,
                 Limit = 1
             };
 
-            var connectionFactory = new QueryableConnectionResolver<string>(
-                list.AsQueryable(), pagingDetails);
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
 
             // act
-            Connection<string> connection = await connectionFactory.ResolveAsync(
-                CancellationToken.None);
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
 
             // assert
             Assert.True(
@@ -118,17 +107,85 @@ namespace HotChocolate.Pagination.Tests
                 Limit = 10
             };
 
-            var connectionFactory = new QueryableConnectionResolver<string>(
-                list.AsQueryable(), pagingDetails);
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
 
             // act
-            Connection<string> connection = await connectionFactory.ResolveAsync(
-                CancellationToken.None);
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
+
+            // assert
+            Assert.False(
+                connection.PageInfo.HasNextPage,
+                "HasNextPage_False");
+        }
+
+        [Test]
+        public async Task HasPreviousPage_True()
+        {
+            // arrange
+            var list = new List<string> { "a", "b", "c", "d", };
+
+            var pagingDetails = new PaginationDetails
+            {
+                PageNumber = 2,
+                Limit = 1
+            };
+
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
+
+            // act
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
 
             // assert
             Assert.True(
-                !connection.PageInfo.HasNextPage,
-                "HasNextPage_False");
+                connection.PageInfo.HasPreviousPage,
+                "HasPreviousPage_True");
+        }
+
+        [Test]
+        public async Task HasPreviousPage_False()
+        {
+            // arrange
+            var list = new List<string> { "a", "b", "c", "d", };
+
+            var pagingDetails = new PaginationDetails
+            {
+                PageNumber = 1,
+            };
+
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
+
+            // act
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
+
+            // assert
+            Assert.False(
+                connection.PageInfo.HasPreviousPage,
+                "HasPreviousPage_False");
+        }
+
+        [Test]
+        public async Task Check_PaginationDetails_Default_Value()
+        {
+            // arrange
+            var list = new List<string> { "a", "b", "c", "d", };
+
+            var pagingDetails = new PaginationDetails();
+
+            var connectionFactory = new QueryableConnectionResolver<string>(list.AsQueryable(), pagingDetails);
+
+            // act
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
+
+            // assert
+            Assert.AreEqual(connection.PageInfo.Limit, 10);
+
+            Assert.AreEqual(connection.PageInfo.PageNumber, 1);
+
+            Assert.False(connection.PageInfo.HasNextPage);
+
+            Assert.False(connection.PageInfo.HasPreviousPage);
+
+            Assert.AreEqual(connection.PageInfo.TotalCount, list.Count);
         }
 
         [Test]
@@ -146,8 +203,7 @@ namespace HotChocolate.Pagination.Tests
                 list.AsQueryable(), pagingDetails);
 
             // act
-            Connection<string> connection = await connectionFactory.ResolveAsync(
-                CancellationToken.None);
+            Connection<string> connection = await connectionFactory.ResolveAsync(CancellationToken.None);
 
             // assert
             Assert.AreEqual(connection.Edges[0].Node,

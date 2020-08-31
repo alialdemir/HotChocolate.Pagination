@@ -1,21 +1,69 @@
 ﻿using HotChocolate.Pagination.Abstract;
+using Newtonsoft.Json;
 
 namespace HotChocolate.Pagination.Models
 {
     public class QueryablePagingDetails : IPageInfo
     {
-        public QueryablePagingDetails(bool hasNextPage, long? totalCount, int? pageNumber, int? limit)
+        public QueryablePagingDetails(long? totalCount, int? pageNumber, int? limit)
         {
-            HasNextPage = hasNextPage;
             TotalCount = totalCount;
             PageNumber = pageNumber;
+
+            if (totalCount.HasValue && limit.HasValue)
+            {
+                TotalPages = totalCount.Value / limit.Value;
+
+                if (TotalCount % limit > 0)
+                    TotalPages++;
+            }
+
             Limit = limit;
         }
 
-        public bool HasNextPage { get; set; }
+        /// <summary>
+        /// Has previous page
+        /// </summary>
+        public bool HasPreviousPage => PageNumber.HasValue && PageNumber > 1;
 
+        /// <summary>
+        /// Has next page
+        /// </summary>
+        public bool HasNextPage => PageNumber.HasValue && TotalPages.HasValue && PageNumber + 1 < TotalPages;
+
+        /// <summary>
+        /// Total count
+        /// </summary>
         public long? TotalCount { get; set; }
+
+        /// <summary>
+        /// Page number
+        /// </summary>
         public int? PageNumber { get; set; }
+
+        /// <summary>
+        /// Total pages
+        /// </summary>
+        public long? TotalPages { get; set; }
+
+        /// <summary>
+        /// Limit
+        /// </summary>
         public int? Limit { get; set; }
+
+        /// <summary>
+        /// Offset
+        /// </summary>
+        [JsonIgnore]
+        public int Offset
+        {
+            get
+            {
+                if (!PageNumber.HasValue || !Limit.HasValue)
+                    return 0;
+
+                return Limit.Value * (PageNumber.Value - 1);
+            }
+        }
     }
 }

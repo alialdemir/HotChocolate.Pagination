@@ -4,7 +4,8 @@
     {
         long? TotalCount { get; set; }
         int? PageNumber { get; set; }
-        bool HasNextPage { get; set; }
+        bool HasNextPage { get; }
+        bool HasPreviousPage { get; }
         int? Limit { get; set; }
     }
 }

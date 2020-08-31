@@ -14,7 +14,7 @@ namespace HotChocolate.Pagination
         private static readonly MethodInfo _off = typeof(PaginationObjectFieldDescriptorExtensions)
       .GetMethods(BindingFlags.Public | BindingFlags.Static)
       .Single(m => m.Name.Equals(
-          nameof(PaginationObjectFieldDescriptorExtensions.UsePaging),
+          nameof(PaginationObjectFieldDescriptorExtensions.UsePagination),
           StringComparison.Ordinal)
           && m.GetGenericArguments().Length == 1
           && m.GetParameters().Length == 1
@@ -23,7 +23,7 @@ namespace HotChocolate.Pagination
         private static readonly MethodInfo _iff = typeof(PaginationObjectFieldDescriptorExtensions)
             .GetMethods(BindingFlags.Public | BindingFlags.Static)
             .Single(m => m.Name.Equals(
-                nameof(PaginationObjectFieldDescriptorExtensions.UsePaging),
+                nameof(PaginationObjectFieldDescriptorExtensions.UsePagination),
                 StringComparison.Ordinal)
                 && m.GetGenericArguments().Length == 1
                 && m.GetParameters().Length == 1

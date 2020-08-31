@@ -1,18 +1,18 @@
-﻿using HotChocolate.Pagination.Abstract;
+﻿using HotChocolate.Types.Relay;
 using System.Collections.Generic;
 
 namespace HotChocolate.Pagination
 {
-    public class Connection<T> : IConnection
+    public class Connection<T> : Abstract.IConnection
     {
-        public Connection(IPageInfo pageInfo, IReadOnlyList<Types.Relay.Edge<T>> edges)
+        public Connection(Abstract.IPageInfo pageInfo, IReadOnlyList<IEdge> edges)
         {
             PageInfo = pageInfo;
             Edges = edges;
         }
 
-        public IPageInfo PageInfo { get; }
+        public Abstract.IPageInfo PageInfo { get; }
 
-        public IReadOnlyList<Types.Relay.IEdge> Edges { get; }
+        public IReadOnlyList<IEdge> Edges { get; }
     }
 }

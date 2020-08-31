@@ -10,18 +10,6 @@ namespace HotChocolate.Pagination.Models
         private int? _limit = 10;
 
         [JsonIgnore]
-        public int Offset
-        {
-            get
-            {
-                if (!PageNumber.HasValue || !Limit.HasValue)
-                    return 0;
-
-                return Limit.Value * (PageNumber.Value - 1);
-            }
-        }
-
-        [JsonIgnore]
         public IDictionary<string, object> Properties { get; set; }
 
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿using HotChocolate.Pagination.Abstract;
 using HotChocolate.Types;
 
-namespace HotChocolate.Pagination
+namespace HotChocolate.Pagination.Types
 {
     public class PageInfoType
         : ObjectType<IPageInfo>

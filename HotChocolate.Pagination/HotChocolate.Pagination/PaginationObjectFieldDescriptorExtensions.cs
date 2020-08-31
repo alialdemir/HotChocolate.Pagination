@@ -1,4 +1,5 @@
-﻿using HotChocolate.Resolvers;
+﻿using HotChocolate.Pagination.Types;
+using HotChocolate.Resolvers;
 using HotChocolate.Types;
 using System;
 
@@ -6,26 +7,21 @@ namespace HotChocolate.Pagination
 {
     public static class PaginationObjectFieldDescriptorExtensions
     {
-        public static IObjectFieldDescriptor UsePaging<TSchemaType, TClrType>(
-             this IObjectFieldDescriptor descriptor)
-             where TSchemaType : class, IOutputType
+        public static IObjectFieldDescriptor UsePagination<TSchemaType, TClrType>(this IObjectFieldDescriptor descriptor) where TSchemaType : class, IOutputType
         {
             return descriptor
-                .AddPagingArguments()
-
+                .AddPaginationArguments()
                 .Type<PaginationType<TSchemaType>>()
                 .Use<QueryableConnectionMiddleware<TClrType>>();
         }
 
-        public static IObjectFieldDescriptor UsePaging<TSchemaType>(
-          this IObjectFieldDescriptor descriptor)
-          where TSchemaType : class, IOutputType
+        public static IObjectFieldDescriptor UsePagination<TSchemaType>(this IObjectFieldDescriptor descriptor) where TSchemaType : class, IOutputType
         {
             FieldMiddleware placeholder = next => default(FieldDelegate);
             Type middlewareDefinition = typeof(QueryableConnectionMiddleware<>);
 
             descriptor
-                .AddPagingArguments()
+                .AddPaginationArguments()
                 .Type<PaginationType<TSchemaType>>()
                 .Use(placeholder)
                 .Extend()
@@ -46,27 +42,23 @@ namespace HotChocolate.Pagination
             return descriptor;
         }
 
-        public static IInterfaceFieldDescriptor UsePaging<TSchemaType>(
-            this IInterfaceFieldDescriptor descriptor)
-            where TSchemaType : class, IOutputType
+        public static IInterfaceFieldDescriptor UsePagination<TSchemaType>(this IInterfaceFieldDescriptor descriptor) where TSchemaType : class, IOutputType
         {
             descriptor
-                .AddPagingArguments()
+                .AddPaginationArguments()
                 .Type<PaginationType<TSchemaType>>();
 
             return descriptor;
         }
 
-        public static IObjectFieldDescriptor AddPagingArguments(
-            this IObjectFieldDescriptor descriptor)
+        public static IObjectFieldDescriptor AddPaginationArguments(this IObjectFieldDescriptor descriptor)
         {
             return descriptor
                 .Argument("pageNumber", a => a.Type<IntType>())
                 .Argument("limit", a => a.Type<IntType>());
         }
 
-        public static IInterfaceFieldDescriptor AddPagingArguments(
-            this IInterfaceFieldDescriptor descriptor)
+        public static IInterfaceFieldDescriptor AddPaginationArguments(this IInterfaceFieldDescriptor descriptor)
         {
             return descriptor
                 .Argument("pageNumber", a => a.Type<IntType>())

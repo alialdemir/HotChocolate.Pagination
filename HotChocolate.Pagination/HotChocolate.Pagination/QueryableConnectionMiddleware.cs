@@ -17,9 +17,8 @@ namespace HotChocolate.Pagination
         private readonly FieldDelegate _next;
         private readonly ConnectionResolverFactory<T> _createConnectionResolver;
 
-        public QueryableConnectionMiddleware(
-            FieldDelegate next,
-            ConnectionResolverFactory<T> createConnectionResolver)
+        public QueryableConnectionMiddleware(FieldDelegate next,
+                                             ConnectionResolverFactory<T> createConnectionResolver)
         {
             _next = next ?? throw new ArgumentNullException(nameof(next));
             _createConnectionResolver = createConnectionResolver
@@ -64,8 +63,8 @@ namespace HotChocolate.Pagination
             }
         }
 
-        private static IConnectionResolver CreateConnectionResolver(
-            IQueryable<T> source, PaginationDetails pagingDetails)
+        private static IConnectionResolver CreateConnectionResolver(IQueryable<T> source,
+                                                                    PaginationDetails pagingDetails)
         {
             return new QueryableConnectionResolver<T>(source, pagingDetails);
         }

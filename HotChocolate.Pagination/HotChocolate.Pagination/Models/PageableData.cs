@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace HotChocolate.Pagination.Models
 {
-    public class PageableData<T>
+    internal class PageableData<T>
     {
         public PageableData(IEnumerable<T> source)
             : this(source, null)
@@ -31,8 +31,14 @@ namespace HotChocolate.Pagination.Models
             Properties = properties;
         }
 
+        /// <summary>
+        /// Source
+        /// </summary>
         public IQueryable<T> Source { get; }
 
+        /// <summary>
+        /// Properties
+        /// </summary>
         public IDictionary<string, object> Properties { get; }
     }
 }

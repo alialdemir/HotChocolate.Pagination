@@ -21,9 +21,8 @@ namespace HotChocolate.Pagination
         private readonly IDictionary<string, object> _properties;
         private readonly QueryablePagingDetails _pageDetails;
 
-        public QueryableConnectionResolver(
-            IQueryable<T> source,
-            PaginationDetails paginationDetails)
+        public QueryableConnectionResolver(IQueryable<T> source,
+                                           PaginationDetails paginationDetails)
         {
             if (paginationDetails == null)
             {
@@ -37,12 +36,24 @@ namespace HotChocolate.Pagination
                 ?? new Dictionary<string, object>();
         }
 
-        public Task<Connection<T>> ResolveAsync(
-            CancellationToken cancellationToken)
+        public Task<Connection<T>> ResolveAsync(CancellationToken cancellationToken)
         {
             return Task.Run(() => Create(), cancellationToken);
         }
 
+        public ValueTask<IConnection> ResolveAsync(IMiddlewareContext context,
+                                                   object source,
+                                                   HotChocolate.Types.Relay.ConnectionArguments arguments,
+                                                   bool withTotalCount,
+                                                   CancellationToken cancellationToken)
+        {
+            return new ValueTask<IConnection>(Create());
+        }
+
+        /// <summary>
+        /// Creates a connection object
+        /// </summary>
+        /// <returns>Connection</returns>
         private Connection<T> Create()
         {
             if (!_pageDetails.TotalCount.HasValue)
@@ -54,27 +65,21 @@ namespace HotChocolate.Pagination
 
             IReadOnlyList<QueryableEdge<T>> selectedEdges = GetSelectedEdges();
 
-            var pageInfo = new QueryablePagingDetails(HasNextPage(_pageDetails.TotalCount,
-                                                                  _pageDetails.Limit,
-                                                                  _pageDetails.PageNumber), _pageDetails.TotalCount, _pageDetails.PageNumber, _pageDetails.Limit);
+            var pageInfo = new QueryablePagingDetails(_pageDetails.TotalCount,
+                                                      _pageDetails.PageNumber,
+                                                      _pageDetails.Limit);
 
             return new Connection<T>(pageInfo, selectedEdges);
         }
 
-        private bool HasNextPage(long? count, int? limit, int? pageNumber)
-        {
-            if (!limit.HasValue || !pageNumber.HasValue || !count.HasValue)
-                return false;
-
-            if (pageNumber.Value <= 0 || limit.Value <= 0) return false;
-            return !((pageNumber.Value - 1) > count.Value / limit.Value);
-        }
-
+        /// <summary>
+        /// Creates a IReadOnlyList QueryableEdge object
+        /// </summary>
+        /// <returns>List of QueryableEdge</returns>
         private IReadOnlyList<QueryableEdge<T>> GetSelectedEdges()
         {
             var list = new List<QueryableEdge<T>>();
-            List<T> edges = GetEdgesToReturn(
-                _source, _pageDetails);
+            List<T> edges = GetEdgesToReturn(_source, _pageDetails);
 
             for (int i = 0; i < edges.Count; i++)
             {
@@ -87,42 +92,62 @@ namespace HotChocolate.Pagination
             return list;
         }
 
-        private List<T> GetEdgesToReturn(
-            IQueryable<T> allEdges,
-            QueryablePagingDetails pagingDetails)
+        /// <summary>
+        /// Get paging edgess
+        /// </summary>
+        /// <param name="allEdges">Edges</param>
+        /// <param name="pagingDetails">Paging  details</param>
+        /// <returns>List of edges</returns>
+        private List<T> GetEdgesToReturn(IQueryable<T> allEdges,
+                                         QueryablePagingDetails pagingDetails)
         {
-            IQueryable<T> edges = ApplyCursorToEdges(allEdges,
-                                                     pagingDetails.Limit,
-                                                     pagingDetails.PageNumber);
+            IQueryable<T> edges = ApplySkipTakeToEdges(allEdges,
+                                                       pagingDetails.Limit,
+                                                       pagingDetails.Offset);
 
             return edges.ToList();
         }
 
-        protected virtual IQueryable<T> ApplyCursorToEdges(
-            IQueryable<T> allEdges, int? limit, int? pageNumber)
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="allEdges"></param>
+        /// <param name="limit">Item limit</param>
+        /// <param name="offset">Offset</param>
+        /// <returns></returns>
+        protected virtual IQueryable<T> ApplySkipTakeToEdges(IQueryable<T> allEdges,
+                                                             int? limit,
+                                                             int offset)
         {
-            IQueryable<T> edges = allEdges;
-
-            if (pageNumber.HasValue && limit.HasValue)
+            if (limit.HasValue)
             {
-                edges = edges
-                    .Skip(limit.Value * (pageNumber.Value - 1))
-                    .Take(limit.Value);
+                allEdges = allEdges
+                                .Skip(offset)
+                                .Take(limit.Value);
             }
 
-            return edges;
+            return allEdges;
         }
 
-        private QueryablePagingDetails DeserializePagingDetails(
-            PaginationDetails pagination)
+        /// <summary>
+        /// PaginationDetails to QueryablePagingDetails object
+        /// </summary>
+        /// <param name="pagination">Pagination</param>
+        /// <returns>QueryablePagingDetails</returns>
+        private QueryablePagingDetails DeserializePagingDetails(PaginationDetails pagination)
         {
             long? totalCount = GetTotalCountFromCursor(_properties);
 
-            return new QueryablePagingDetails(HasNextPage(totalCount,
-                                                          pagination.Limit,
-                                                          pagination.PageNumber), totalCount, pagination.PageNumber, pagination.Limit);
+            return new QueryablePagingDetails(totalCount,
+                                              pagination.PageNumber,
+                                              pagination.Limit);
         }
 
+        /// <summary>
+        /// Total item count
+        /// </summary>
+        /// <param name="properties">Properties</param>
+        /// <returns>Total count</returns>
         private long? GetTotalCountFromCursor(IDictionary<string, object> properties)
         {
             if (properties == null)
@@ -131,15 +156,6 @@ namespace HotChocolate.Pagination
             }
 
             return Convert.ToInt32(properties[_totalCount]);
-        }
-
-        public ValueTask<IConnection> ResolveAsync(IMiddlewareContext context,
-                                                   object source,
-                                                   Types.Relay.ConnectionArguments arguments,
-                                                   bool withTotalCount,
-                                                   CancellationToken cancellationToken)
-        {
-            return new ValueTask<IConnection>(Create());
         }
     }
 }
