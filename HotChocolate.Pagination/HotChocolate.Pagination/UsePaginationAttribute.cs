@@ -5,6 +5,8 @@ using System;
 using System.Linq;
 using System.Reflection;
 
+#nullable enable
+
 namespace HotChocolate.Pagination
 {
     public class UsePaginationAttribute : DescriptorAttribute

@@ -1,6 +1,6 @@
-﻿using HotChocolate.Pagination.Models;
+﻿using HotChocolate.Pagination.Abstract;
+using HotChocolate.Pagination.Models;
 using HotChocolate.Resolvers;
-using HotChocolate.Types.Relay;
 using System;
 using System.Collections.Generic;
 using System.Linq;

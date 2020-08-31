@@ -1,7 +1,7 @@
 ﻿using HotChocolate.Language;
+using HotChocolate.Pagination.Abstract;
 using HotChocolate.Pagination.Models;
 using HotChocolate.Resolvers;
-using HotChocolate.Types.Relay;
 using HotChocolate.Utilities;
 using System;
 using System.Collections.Generic;
@@ -41,15 +41,6 @@ namespace HotChocolate.Pagination
             CancellationToken cancellationToken)
         {
             return Task.Run(() => Create(), cancellationToken);
-        }
-
-        public ValueTask<Abstract.IConnection> ResolveAsync(IMiddlewareContext context,
-                                                   object source,
-                                                   ConnectionArguments arguments = default,
-                                                   bool withTotalCount = false,
-                                                   CancellationToken cancellationToken = default)
-        {
-            return new ValueTask<Abstract.IConnection>(Create());
         }
 
         private Connection<T> Create()
@@ -122,16 +113,17 @@ namespace HotChocolate.Pagination
             return edges;
         }
 
-        private static QueryablePagingDetails DeserializePagingDetails(
+        private QueryablePagingDetails DeserializePagingDetails(
             PaginationDetails pagination)
         {
-            return new QueryablePagingDetails(HasNextPage(pagination.TotalCount,
-                                                                  pagination.Limit,
-                                                                  pagination.PageNumber), pagination.TotalCount, pagination.PageNumber, pagination.Limit);
+            long? totalCount = GetTotalCountFromCursor(_properties);
+
+            return new QueryablePagingDetails(HasNextPage(totalCount,
+                                                          pagination.Limit,
+                                                          pagination.PageNumber), totalCount, pagination.PageNumber, pagination.Limit);
         }
 
-        private static long? GetTotalCountFromCursor(
-                    IDictionary<string, object> properties)
+        private long? GetTotalCountFromCursor(IDictionary<string, object> properties)
         {
             if (properties == null)
             {
@@ -139,6 +131,15 @@ namespace HotChocolate.Pagination
             }
 
             return Convert.ToInt32(properties[_totalCount]);
+        }
+
+        public ValueTask<IConnection> ResolveAsync(IMiddlewareContext context,
+                                                   object source,
+                                                   Types.Relay.ConnectionArguments arguments,
+                                                   bool withTotalCount,
+                                                   CancellationToken cancellationToken)
+        {
+            return new ValueTask<IConnection>(Create());
         }
     }
 }

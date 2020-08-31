@@ -6,3 +6,4 @@ C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Paginatio
 C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Release\netcoreapp3.1\HotChocolate.Pagination.csproj.CoreCompileInputs.cache
 C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Release\netcoreapp3.1\HotChocolate.Pagination.dll
 C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Release\netcoreapp3.1\HotChocolate.Pagination.pdb
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Release\netcoreapp3.1\HotChocolate.Pagination.csprojAssemblyReference.cache
