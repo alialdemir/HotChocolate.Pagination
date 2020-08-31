@@ -31,10 +31,9 @@ namespace HotChocolate.Pagination
 
         public Type? SchemaType { get; set; }
 
-        protected override void TryConfigure(
-            IDescriptorContext context,
-            IDescriptor descriptor,
-            ICustomAttributeProvider element)
+        protected override void TryConfigure(IDescriptorContext context,
+                                             IDescriptor descriptor,
+                                             ICustomAttributeProvider element)
         {
             if (element is MemberInfo m)
             {
@@ -50,14 +49,13 @@ namespace HotChocolate.Pagination
             }
         }
 
-        private Type GetSchemaType(
-            IDescriptorContext context,
-            MemberInfo member)
+        private Type GetSchemaType(IDescriptorContext context,
+                                   MemberInfo member)
         {
             Type? type = SchemaType;
 
-            ITypeReference returnType = context.Inspector.GetReturnType(
-                member, TypeContext.Output);
+            ITypeReference returnType = context.Inspector.GetReturnType(member,
+                                                                        TypeContext.Output);
 
             if (type is null
                 && returnType is ClrTypeReference clr

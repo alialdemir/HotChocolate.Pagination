@@ -6,11 +6,26 @@
     <Authors>Ali Aldemir</Authors>
     <Company>Ali Aldemir</Company>
     <Product>HotChocolate.Pagination</Product>
-    <Copyright>hotChocolate, pagination, paging</Copyright>
+    <Copyright></Copyright>
+    <RepositoryUrl>https://github.com/alialdemir/HotChocolate.Pagination</RepositoryUrl>
+    <PackageTags>HotChocolate, Pagination, Paging, GraphQL, ChilliCream</PackageTags>
+    <PackageIcon>hotchocolate-signet.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/alialdemir/HotChocolate.Pagination</PackageProjectUrl>
+    <Description>Contains the Hot Chocolate GraphQL query pagination.
+
+</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="HotChocolate.Types" Version="10.5.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Users\ALIALDEMIR\Downloads\hotchocolate-signet.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
