@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Ali Aldemir</Authors>
+    <Company>Ali Aldemir</Company>
+    <Product>HotChocolate.Pagination</Product>
+    <Copyright>hotChocolate, pagination, paging</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HotChocolate.Types" Version="10.5.2" />
+  </ItemGroup>
+
+</Project>
