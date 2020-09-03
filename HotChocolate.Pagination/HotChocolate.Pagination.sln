@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotChocolate.Pagination", "HotChocolate.Pagination\HotChocolate.Pagination.csproj", "{C97E1657-3D30-4CAC-A6A7-2A296847C2B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotChocolate.Pagination.Tests", "HotChocolate.Pagination.Tests\HotChocolate.Pagination.Tests.csproj", "{B31FE8D6-3911-46F1-9FE7-E7A2130C4FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotChocolate.Pagination.Tests", "HotChocolate.Pagination.Tests\HotChocolate.Pagination.Tests.csproj", "{B31FE8D6-3911-46F1-9FE7-E7A2130C4FBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{B13E6A6A-6EA2-4CC5-A9A0-80051D22F9E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Movies", "example\AspNetCore.Movies\AspNetCore.Movies.csproj", "{91DE1D38-9A52-42AE-9997-6A4260EC039F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{B31FE8D6-3911-46F1-9FE7-E7A2130C4FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B31FE8D6-3911-46F1-9FE7-E7A2130C4FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B31FE8D6-3911-46F1-9FE7-E7A2130C4FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91DE1D38-9A52-42AE-9997-6A4260EC039F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91DE1D38-9A52-42AE-9997-6A4260EC039F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91DE1D38-9A52-42AE-9997-6A4260EC039F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91DE1D38-9A52-42AE-9997-6A4260EC039F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{91DE1D38-9A52-42AE-9997-6A4260EC039F} = {B13E6A6A-6EA2-4CC5-A9A0-80051D22F9E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40AF0CB0-3206-4593-8BEC-59F0D083B348}
