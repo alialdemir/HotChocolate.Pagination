@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Github\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj": {}
+    "C:\\GitHub\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj": {}
   },
   "projects": {
-    "C:\\Github\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj": {
+    "C:\\GitHub\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Github\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj",
+        "projectUniqueName": "C:\\GitHub\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj",
         "projectName": "HotChocolate.Pagination",
-        "projectPath": "C:\\Github\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj",
-        "packagesPath": "C:\\Users\\ALIALDEMIR\\.nuget\\packages\\",
-        "outputPath": "C:\\Github\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\obj\\",
+        "projectPath": "C:\\GitHub\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination.csproj",
+        "packagesPath": "C:\\Users\\ALI\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\HotChocolate.Pagination\\HotChocolate.Pagination\\HotChocolate.Pagination\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ALIALDEMIR\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\ALI\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
