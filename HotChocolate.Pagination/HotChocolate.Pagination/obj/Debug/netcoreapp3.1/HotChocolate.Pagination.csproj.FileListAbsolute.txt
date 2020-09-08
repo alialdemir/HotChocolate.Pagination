@@ -1,9 +1,8 @@
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\bin\Debug\netcoreapp3.1\HotChocolate.Pagination.deps.json
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\bin\Debug\netcoreapp3.1\HotChocolate.Pagination.dll
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.AssemblyInfoInputs.cache
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.AssemblyInfo.cs
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\bin\Debug\netcoreapp3.1\HotChocolate.Pagination.pdb
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.csproj.CoreCompileInputs.cache
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.dll
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.pdb
-C:\GitHub\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.csprojAssemblyReference.cache
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\bin\Debug\netcoreapp3.1\HotChocolate.Pagination.deps.json
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\bin\Debug\netcoreapp3.1\HotChocolate.Pagination.dll
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\bin\Debug\netcoreapp3.1\HotChocolate.Pagination.pdb
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.AssemblyInfoInputs.cache
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.AssemblyInfo.cs
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.csproj.CoreCompileInputs.cache
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.dll
+C:\Github\HotChocolate.Pagination\HotChocolate.Pagination\HotChocolate.Pagination\obj\Debug\netcoreapp3.1\HotChocolate.Pagination.pdb

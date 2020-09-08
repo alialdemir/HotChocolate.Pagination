@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "HotChocolate.Pagination/1.0.0": {
+      "HotChocolate.Pagination/1.0.1": {
         "dependencies": {
           "HotChocolate.Types": "10.5.2"
         },
@@ -135,7 +135,7 @@
     }
   },
   "libraries": {
-    "HotChocolate.Pagination/1.0.0": {
+    "HotChocolate.Pagination/1.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

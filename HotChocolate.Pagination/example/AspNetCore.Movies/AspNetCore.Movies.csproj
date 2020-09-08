@@ -5,15 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Graphql\Mutations\**" />
+    <Content Remove="Graphql\Mutations\**" />
+    <EmbeddedResource Remove="Graphql\Mutations\**" />
+    <None Remove="Graphql\Mutations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\HotChocolate.Pagination\HotChocolate.Pagination.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Graphql\Mutations\" />
-    <Folder Include="Graphql\Types\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="HotChocolate" Version="10.5.2" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="10.5.2" />
     <PackageReference Include="HotChocolate.AspNetCore.Playground" Version="10.5.2" />
   </ItemGroup>

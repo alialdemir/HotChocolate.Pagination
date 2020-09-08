@@ -1,4 +1,7 @@
-using AspNetCore.Movies.Graphql.Queries;
+﻿using AspNetCore.Movies.Graphql.Queries;
+using AspNetCore.Movies.Graphql.Types;
+using AspNetCore.Movies.Infrastructure.DbContext;
+using AspNetCore.Movies.Infrastructure.Repositories.Movie;
 using HotChocolate;
 using HotChocolate.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -12,22 +15,20 @@ namespace AspNetCore.Movies
         public void ConfigureServices(IServiceCollection services)
         {
             services
-              .AddGraphQL(
-                     SchemaBuilder
-                         .New()
-                         .AddQueryType(d => d.Name("Query"))
-                         .AddMutationType(d => d.Name("Mutation"))
-
-                         .AddType<MovieQuery>()
-
-                         .Create()
-                 );
+                .AddScoped<MovieDbContext>()
+                .AddScoped<IMovieRepository, MovieRepository>()
+                .AddGraphQL(s => SchemaBuilder
+                                .New()
+                                .AddServices(s)
+                                .AddType<MovieType>()
+                                .AddQueryType<MovieQuery>()
+                                .Create());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UsePlayground();
-            app.UseGraphQL("/GraphQl");
+            app.UsePlayground()
+               .UseGraphQL();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace HotChocolate.Pagination.Models
         /// <summary>
         /// Has next page
         /// </summary>
-        public bool HasNextPage => PageNumber.HasValue && TotalPages.HasValue && PageNumber + 1 < TotalPages;
+        public bool HasNextPage => PageNumber.HasValue && TotalPages.HasValue && PageNumber + 1 <= TotalPages;
 
         /// <summary>
         /// Total count

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using HotChocolate.Types;
+using System;
 using System.Linq;
-using HotChocolate.Types;
 
 namespace HotChocolate.Pagination.Types
 {

@@ -16,12 +16,12 @@ namespace HotChocolate.Pagination.Types
                 .Type<NonNullType<IntType>>()
                 .Name("limit")
                 .Description(
-                    "Indicates whether more edges exist following the set defined by the clients arguments.");
+                    "Number of records per page.");
 
             descriptor.Field(t => t.PageNumber)
                 .Type<NonNullType<IntType>>()
                 .Name("pageNumber")
-                .Description("Indicates whether more edges exist prior the set defined by the clients arguments.");
+                .Description("Page number.");
 
             descriptor.Field(t => t.TotalCount)
                 .Type<LongType>()
@@ -31,7 +31,12 @@ namespace HotChocolate.Pagination.Types
             descriptor.Field(t => t.HasNextPage)
                 .Type<BooleanType>()
                 .Name("hasNextPage")
-                .Description("Indicates whether more edges exist following the set defined by the clients arguments.");
+                .Description("Is the next page available.");
+
+            descriptor.Field(t => t.HasPreviousPage)
+                .Type<BooleanType>()
+                .Name("hasPreviousPage")
+                .Description("Is the previous page available.");
         }
     }
 }
