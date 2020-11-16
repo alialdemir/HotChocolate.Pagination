@@ -22,11 +22,4 @@
     <PackageReference Include="HotChocolate.Types" Version="10.5.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="..\..\..\..\Users\ALIALDEMIR\Downloads\hotchocolate-signet.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-
 </Project>

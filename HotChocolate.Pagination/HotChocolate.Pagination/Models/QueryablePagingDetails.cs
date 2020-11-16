@@ -24,12 +24,31 @@ namespace HotChocolate.Pagination.Models
         /// <summary>
         /// Has previous page
         /// </summary>
-        public bool HasPreviousPage => PageNumber.HasValue && PageNumber > 1;
+        public bool HasPreviousPage
+        {
+            get
+            {
+                return PageNumber.HasValue && PageNumber > 1;
+            }
+            set
+            {
+            }
+        }
 
         /// <summary>
         /// Has next page
         /// </summary>
-        public bool HasNextPage => PageNumber.HasValue && TotalPages.HasValue && PageNumber + 1 <= TotalPages;
+        public bool HasNextPage
+        {
+            get
+            {
+                return PageNumber.HasValue && TotalPages.HasValue && PageNumber + 1 <= TotalPages;
+            }
+
+            set
+            {
+            }
+        }
 
         /// <summary>
         /// Total count
